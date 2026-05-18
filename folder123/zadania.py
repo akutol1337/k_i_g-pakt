@@ -1,6 +1,6 @@
 #Po dwa zadania z polimorfizmu (duck typing oraz interfejs), hermetyzacji i obsługi wyjątków. Polecenia i implementacja w Pythonie.
+#polimorfizm - duck typing
 '''
-#duck typing
 class Cat:
     def __init__(self, name):
         self.name = name
@@ -120,7 +120,8 @@ lizard.fly()
 fish.swim()
 lizard.swim()
 '''
-#hermetyzacja
+#hermetyzacja - sklep
+'''
 class Shop:
     def __init__(self, name, product, product_weight, money):
         self.name = name
@@ -189,3 +190,98 @@ lidl.buy_product('ogórek', 0.2, 0.3, 2)
 lidl.show_info()
 lidl.sell_product('pomidor', 1.2, 2)
 lidl.show_info()
+'''
+#hermetyzacja - akwarium
+fish_pl = []
+ultraprefix_prefix_prefix = ["dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt"]
+ultraprefix_prefix = ["dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć", "dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"]
+ultraprefix_suffix = ["tysiące", "tysięcy"]
+ultraprefix = ["tysiąc"]
+superprefix = ["sto", "dwieście", "trzysta", "czterysta", "pięcset", "sześćset", "siedemset", "osiemset", "dziewięćset"]
+prefix = ["dwudziesta","trzydziesta","czterdziesta","pięćdziesiąta","sześćdziesiąta", "siedemdziesąta","osiemdziesiąta","dziewięćdziesiąta"]
+suffix = ["pierwsza", "druga", "trzecia", "czwarta", "piąta", "szósta", "siódma", "ósma", "dziewiąta"]
+mid = ["dziesiąta", "jedenasta", "dwunasta", "trzynasta", "czternasta", "piętnasta", "szesnasta", "siedemnasta", "osiemnasta", "dziewiętnasta"]
+for each in suffix:
+     fish_pl += [each]
+for each in mid:
+     fish_pl += [each]
+for each in prefix:
+    fish_pl += [each]
+    for inner_each in suffix:
+        supercombo = (each + " " + str(inner_each))
+        fish_pl += [supercombo]
+for each in superprefix:
+    fish_pl += [each]
+    for inner_each in suffix:
+        supercombo = (each + " " + str(inner_each))
+        fish_pl += [supercombo]
+    for inner_each in mid:
+        supercombo = (each + " " + str(inner_each))
+        fish_pl += [supercombo]
+    for inner_each in prefix:
+        supercombo = (each + " " + str(inner_each))
+        fish_pl += [supercombo]
+        for inner_inner_each in suffix:
+            supercombo = (each + " " + str(inner_each) + " " + str(inner_inner_each))
+            fish_pl += [supercombo]
+for each in ultraprefix_suffix:
+    if (ultraprefix_suffix[0] == each):
+        for inner_each in ultraprefix_prefix[:3]:
+            supercombo = (inner_each + " " + each)
+            ultraprefix += [supercombo]
+    if (ultraprefix_suffix[1] == each):
+        for inner_each in ultraprefix_prefix[3:]:
+            supercombo = (inner_each + " " + each)
+            ultraprefix += [supercombo]
+        for inner_each in 
+    
+class Aquarium:
+    def __init__(self, size, fish_name, fish_species):
+        self.size = size
+        self.fish_name = [fish_name]
+        self.fish_species = [fish_species]
+
+    def show_fish(self):
+        print('\nOto ryby w akwarium:')
+        i = 0
+        for each in self.fish_name:
+            #print("\nTa ryba nazywa się:", each, "\nGatunek tej ryby to:", str(self.fish_species[i]))
+            print("\n"+fish_pl[i].capitalize(),"ryba nazywa się:", each, "\nGatunek tej ryby to:", str(self.fish_species[i]))
+            i += 1
+
+    def add_fish(self, fish_name, fish_species):
+        self.fish_name += [fish_name]
+        self.fish_species += [fish_species]
+
+
+aquarium = Aquarium(7 ,'Darek', 'sum')
+aquarium.show_fish()
+aquarium.add_fish('Marek', 'szczupak')
+aquarium.show_fish()
+#print(fish_pl)
+print(ultraprefix)
+#obsługa wyjątków - liczby
+'''
+print("Ile przeczytałeś książek w ostatnim roku?")
+while True:
+    try:
+        amount = int(input())
+        break
+    except ValueError:
+        print("To nie jest liczba")
+'''
+#obsługa wyjątków - dzielenie przez zero
+'''
+print("Symulator dzielenia")
+while True:
+    try:
+        print("Podaj pierwszą liczbę")
+        num_one = float(input())
+        print("Podaj drugą liczbę")
+        num_two = float(input())
+        result = num_one/num_two
+        print("Wynik wynosi: " + str(result))
+        break
+    except ZeroDivisionError:
+        print("Nie można dzielić przez zero")
+'''
